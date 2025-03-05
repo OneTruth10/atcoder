@@ -9,5 +9,5 @@ for i in n:
         count+=1
         ones.append(i)
 
-for i in range(n-count):
-    
+
+
