@@ -4,7 +4,7 @@ cost = {}
 for i in range(int(m)):
     u, v, w = input().split(' ')
     graph[int(u)].append(int(v))
-    cost[(int(u),int(v))] = int(v)
+    cost[(int(u),int(v))] = int(w)
 
 visited = set()  
 stack = [1]+graph[1]
@@ -18,7 +18,6 @@ while stack:
         if node==int(n):
             path.append(node)
             temp = cost[tuple(path[0:2])]
-            print(temp)
             for i in range(1,len(path)-1):
                 temp = temp ^ cost[tuple(path[i:i+2])]
             min_xor  = min(min_xor, temp)
