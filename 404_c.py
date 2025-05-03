@@ -1,5 +1,7 @@
 n, m = map(int, input().split(' '))
-
+if m==0:
+    print("No")
+    exit()
 graph = {}
 
 for i in range(m):
@@ -10,20 +12,26 @@ for i in range(m):
     b_set.add(a)
     graph[a] = a_set
     graph[b] = b_set
-found = False
-start = a
-seen = set([a])
-stack = list(graph[a])
+    
+for node in graph:
+    if len(graph[node]) != 2:
+        print("No")
+        exit()
+for node in graph:
+    start = node
+    break
+
+seen = set()
+stack = [start]
+
 while stack:
-    node = stack.pop(-1)
+    node = stack.pop()
     if node not in seen:
         seen.add(node)
-        stack.extend(graph[node])
-    elif node==start and not seen.difference(set(stack))==seen:
-        print("Yes")
-        found = True
-        break
+        stack.extend(graph[node] - seen)
         
-        
-if not found:
+
+if len(seen) == n:
+    print("Yes")
+else:
     print("No")
