@@ -1,3 +1,5 @@
+#Heap do not work
+
 import heapq
 
 N, K = map(int, input().split(" "))

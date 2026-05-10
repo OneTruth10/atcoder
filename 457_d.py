@@ -1,21 +1,27 @@
-import heapq
-import sys
+import math
 
-input = sys.stdin.read
+N, K = map(int, input().split(" "))
+A = list(map(int, input().split(" ")))
 
-data = input().split()
-N = int(data[0])
-K = int(data[1])
-A = list(map(int, data[2:   ]))
-pq = []
+def isOk(x):
+    result = 0
+    for i in range(1, N+1):
+        if A[i-1]<x:
+            need = (x - A[i-1])
+            if need%i!=0:
+                result += need//i + 1
+            else:
+                result += need//i
+            if result>K:
+                return False
+    return True
 
-for i in range(N):
-    heapq.heappush(pq, (A[i], i+1))
-    
-    
-for i in range(K):
-    current_min, index_to_add = heapq.heappop(pq)
-    new_val = current_min + index_to_add
-    heapq.heappush(pq, (new_val, index_to_add))
-        
-print(pq[0][0])
+bottom = 1
+top = A[0] + K + 1
+while top-bottom > 1:
+    m = (top + bottom)//2
+    if isOk(m):
+        bottom = m
+    else:
+        top = m
+print(bottom)
