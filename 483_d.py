@@ -4,6 +4,8 @@ pos = 0
 neg = 0
 max_neg = 0
 max_pos = 0
+pos_distance = 0
+neg_distance = 0
 for a in A:
     if a<0:
         neg += abs(a)
@@ -14,6 +16,14 @@ for a in A:
         
     
 temp = abs(pos-neg)
-result = max(temp, abs((pos-max_pos)-(neg+max_pos)), abs((pos+max_neg)-(neg-max_neg))) + 1
+max_distance = max(temp, abs((pos-max_pos)-(neg+max_pos)), abs((pos+max_neg)-(neg-max_neg)))
+if temp==max_distance:
+    for a in A:
+        
+
+
+
+
+result =  + 1
 
 print(result)
